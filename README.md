@@ -133,27 +133,11 @@ class CountriesBloc extends Bloc<CountriesEvent, CountriesState> {
 }
 ```
 
-## 🧪 Testing
-
-The app includes comprehensive tests:
-
-- **Unit Tests**: For business logic and data layer
-- **Widget Tests**: For UI components
-- **Integration Tests**: For feature flows
-
-Run the tests with:
-
-```bash
-# Run all unit and widget tests
-$ flutter test
-
-# Run with coverage
-$ flutter test --coverage
-```
 
 ## 🔮 Future Improvements
 
 - Add language localization
+- Add tests
 - Implement advanced filtering options
 - Add country comparison feature
 - Integrate with additional data sources
