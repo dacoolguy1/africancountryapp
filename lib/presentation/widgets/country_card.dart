@@ -2,24 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../data/models/country.dart';
 
+//country widget
 class CountryCard extends StatelessWidget {
   final Country country;
   final VoidCallback onTap;
 
-  const CountryCard({
-    Key? key,
-    required this.country,
-    required this.onTap,
-  }) : super(key: key);
+  const CountryCard({Key? key, required this.country, required this.onTap})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -37,12 +33,13 @@ class CountryCard extends StatelessWidget {
                     child: SvgPicture.network(
                       country.flags.svg,
                       fit: BoxFit.cover,
-                      placeholderBuilder: (context) => Container(
-                        color: Colors.grey[300],
-                        child: const Center(
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        ),
-                      ),
+                      placeholderBuilder:
+                          (context) => Container(
+                            color: Colors.grey[300],
+                            child: const Center(
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            ),
+                          ),
                     ),
                   ),
                 ),
@@ -63,19 +60,13 @@ class CountryCard extends StatelessWidget {
                     if (country.capital != null && country.capital!.isNotEmpty)
                       Text(
                         'Capital: ${country.capital!.first}',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
                       ),
                     if (country.languages != null &&
                         country.languages!.isNotEmpty)
                       Text(
                         'Languages: ${country.languages!.values.take(2).join(", ")}${country.languages!.length > 2 ? "..." : ""}',
-                        style: TextStyle(
-                          color: Colors.grey[600],
-                          fontSize: 14,
-                        ),
+                        style: TextStyle(color: Colors.grey[600], fontSize: 14),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),

@@ -25,7 +25,6 @@ Future<void> main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  // Initialize Hive
   await Hive.initFlutter();
 
   // Register adapters
@@ -38,8 +37,9 @@ Future<void> main() async {
 
   // Open Hive boxes
   final countriesBox = await Hive.openBox<String>(HiveBoxes.countriesBox);
-  final countryDetailsBox =
-      await Hive.openBox<String>(HiveBoxes.countryDetailsBox);
+  final countryDetailsBox = await Hive.openBox<String>(
+    HiveBoxes.countryDetailsBox,
+  );
 
   // Setup dependency injection
   _setupDependencies(countriesBox, countryDetailsBox);
@@ -48,31 +48,41 @@ Future<void> main() async {
 }
 
 void _setupDependencies(
-    Box<String> countriesBox, Box<String> countryDetailsBox) {
+  Box<String> countriesBox,
+  Box<String> countryDetailsBox,
+) {
   // Core
   getIt.registerLazySingleton(() => http.Client());
   getIt.registerLazySingleton(() => InternetConnectionChecker());
-  getIt.registerLazySingleton(() => ApiClient(
-        client: getIt<http.Client>(),
-        connectionChecker: getIt<InternetConnectionChecker>(),
-      ));
+  getIt.registerLazySingleton(
+    () => ApiClient(
+      client: getIt<http.Client>(),
+      connectionChecker: getIt<InternetConnectionChecker>(),
+    ),
+  );
 
   // Data sources
-  getIt.registerLazySingleton<CountryDataSource>(() => CountryDataSourceImpl(
-        apiClient: getIt<ApiClient>(),
-        countriesBox: countriesBox,
-        countryDetailsBox: countryDetailsBox,
-      ));
+  getIt.registerLazySingleton<CountryDataSource>(
+    () => CountryDataSourceImpl(
+      apiClient: getIt<ApiClient>(),
+      countriesBox: countriesBox,
+      countryDetailsBox: countryDetailsBox,
+    ),
+  );
 
   // Repositories
-  getIt.registerLazySingleton<CountryRepository>(() => CountryRepositoryImpl(
-        dataSource: getIt<CountryDataSource>(),
-        apiClient: getIt<ApiClient>(),
-      ));
+  getIt.registerLazySingleton<CountryRepository>(
+    () => CountryRepositoryImpl(
+      dataSource: getIt<CountryDataSource>(),
+      apiClient: getIt<ApiClient>(),
+    ),
+  );
 
   // BLoCs
   getIt.registerFactory(
-      () => CountriesBloc(repository: getIt<CountryRepository>()));
+    () => CountriesBloc(repository: getIt<CountryRepository>()),
+  );
   getIt.registerFactory(
-      () => CountryDetailsBloc(repository: getIt<CountryRepository>()));
+    () => CountryDetailsBloc(repository: getIt<CountryRepository>()),
+  );
 }

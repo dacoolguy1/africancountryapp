@@ -25,8 +25,8 @@ class _CountriesScreenState extends State<CountriesScreen> {
 
     _searchController.addListener(() {
       context.read<CountriesBloc>().add(
-            SearchCountries(query: _searchController.text),
-          );
+        SearchCountries(query: _searchController.text),
+      );
     });
   }
 
@@ -39,10 +39,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(AppStrings.appTitle),
-        elevation: 0,
-      ),
+      appBar: AppBar(title: const Text(AppStrings.appTitle), elevation: 0),
       body: Column(
         children: [
           Padding(
@@ -70,24 +67,25 @@ class _CountriesScreenState extends State<CountriesScreen> {
                   return countries.isEmpty
                       ? const Center(child: Text('No countries found'))
                       : ListView.builder(
-                          itemCount: countries.length,
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          itemBuilder: (context, index) {
-                            final country = countries[index];
-                            return CountryCard(
-                              country: country,
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => CountryDetailsScreen(
-                                      countryName: country.name.common,
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        );
+                        itemCount: countries.length,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        itemBuilder: (context, index) {
+                          final country = countries[index];
+                          return CountryCard(
+                            country: country,
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => CountryDetailsScreen(
+                                        countryName: country.name.common,
+                                      ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
                 } else if (state is CountriesError) {
                   return Center(
                     child: Column(
@@ -112,9 +110,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
                     ),
                   );
                 } else if (state is CountriesEmpty) {
-                  return const Center(
-                    child: Text('No countries available'),
-                  );
+                  return const Center(child: Text('No countries available'));
                 }
 
                 return const SizedBox.shrink();

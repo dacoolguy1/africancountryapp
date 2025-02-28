@@ -35,7 +35,7 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
       body: BlocBuilder<CountryDetailsBloc, CountryDetailsState>(
         builder: (context, state) {
           if (state is CountryDetailsLoading) {
-            return const LoadingIndicator();
+            return SafeArea(child: const LoadingIndicator());
           } else if (state is CountryDetailsLoaded) {
             final country = state.countryDetail;
 

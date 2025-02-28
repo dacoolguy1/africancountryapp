@@ -4,7 +4,7 @@
 [![Dart Version](https://img.shields.io/badge/Dart-3.0.0+-blue.svg)](https://dart.dev/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A modern, feature-rich Flutter application showcasing African countries with detailed information. This app demonstrates clean architecture principles, state management with BLoC, and implements various best practices for building production-ready Flutter applications.
+A modern, feature-rich Flutter application showcasing African countries with detailed information. This app demonstrates clean architecture principles, state management with BLoC, and implements various best practices for building production-ready Flutter applications by Temiede Emmanuel.
 
 ![App Screenshot](https://via.placeholder.com/800x400)
 
@@ -151,4 +151,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 I'm a Flutter developer passionate about building clean, maintainable, and user-friendly applications. This project demonstrates my approach to architecture, UI design, and problem-solving in mobile development.
 
-Feel free to connect with me on [LinkedIn](https://linkedin.com/in/yourusername) or check out my other projects on [GitHub](https://github.com/yourusername).
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/emmanueltemiede) or check out my other projects on [GitHub](https://github.com/dacoolguy1).
